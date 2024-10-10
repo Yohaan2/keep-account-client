@@ -1,6 +1,5 @@
-import { login, logout, register, verifyToken } from "@/modules/auth"
-import { UserRegister } from "@/types/auth"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { login, logout, register } from "@/modules/auth"
+import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 
 

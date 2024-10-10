@@ -36,7 +36,7 @@ const SidebarItem = ({ item, pageName, setPageName, setSidebarOpen }: SidebarIte
 
     setSidebarOpen(false)
     return setPageName(updatedPageName);
-  }, [pathName, pageName, item.label, setPageName]);
+  }, [pathName, pageName, item.label, setPageName, setSidebarOpen]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 "use client"
 import Breadcrumb from '@/components/Breadcrumbs/Breadcrumb'
 import RegisterAccount from '@/components/FormElements/RegisterAccount';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function Page() {

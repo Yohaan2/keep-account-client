@@ -14,7 +14,7 @@ export async  function middleware(request: NextRequest) {
 
   try {
     
-    const data = await verifyToken(access_Token.value)
+    await verifyToken(access_Token.value)
     return NextResponse.next()
     
   } catch (error) {

@@ -37,7 +37,7 @@ export const useGetDebtsById = (id:string) => {
 export const useAddDebt = () => {
   return useMutation({
     mutationFn: addDebt,
-    onSuccess: (data, variable) => {
+    onSuccess: (data) => {
       console.log(data)
     }
   })
@@ -48,7 +48,7 @@ export const useDeleteClient = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: deleteClient,
-    onSuccess: (data, variable) => {
+    onSuccess: (_, variable) => {
       console.log('variable', variable)
       const deleteClientInCache = (oldData: any) => {
         console.log('oldData', oldData)
@@ -70,7 +70,7 @@ export const useDeleteClient = () => {
 export const useReduceAccount = () => {
   return useMutation({
     mutationFn: reduceAccount,
-    onSuccess: (data, variable) => {}
+    onSuccess: () => {}
   })
 }
 
@@ -78,7 +78,7 @@ export const useResetAccount = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: resetAccount,
-    onSuccess: (data, variable) => {
+    onSuccess: (_, variable) => {
       const resetAccountInCache = (oldData: any) => {
         if (!oldData) return undefined;
         oldData.data = oldData?.data?.map((item: any) => {

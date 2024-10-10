@@ -2,7 +2,6 @@ import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
 import DropdownUser from "./DropdownUser";
 import Image from "next/image";
-import SearchForm from "@/components/Header/SearchForm";
 import { usePathname } from "next/navigation";
 
 const convertidString = (str: string[]) => {
