@@ -2,19 +2,22 @@ import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 import { refreshToken, verifyToken } from './modules/auth'
 import { AxiosError } from 'axios'
+import { cookies } from 'next/headers'
 // This function can be marked `async` if using `await` inside
 export async  function middleware(request: NextRequest) {
-  console.log(request.nextUrl.pathname)
-  if(request.nextUrl.pathname === '/') return NextResponse.redirect(new URL("/panel", request.url))
+  // if(request.nextUrl.pathname === '/') return NextResponse.redirect(new URL("/panel", request.url))
   const access_Token = request.cookies.get('access_token')
   const refresh_Token = request.cookies.get('refresh_token')
+  console.log('access token', access_Token?.value)
+  console.log('refresh token', refresh_Token)
 
-  if(!access_Token) return NextResponse.redirect(new URL("/login", request.url))
-  if(!refresh_Token) return NextResponse.redirect(new URL("/login", request.url))
+  if(!access_Token?.value) return NextResponse.redirect(new URL("/login", request.url))
+  if(!refresh_Token?.value) return NextResponse.redirect(new URL("/login", request.url))
 
   try {
     
-    await verifyToken(access_Token.value)
+    const data = await verifyToken(access_Token.value)
+    console.log('token verificado, deberia funcionar', data?.data)
     return NextResponse.next()
     
   } catch (error) {
