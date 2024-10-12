@@ -1,4 +1,4 @@
-import { login, logout, register } from "@/modules/auth"
+import { login, register } from "@/modules/auth"
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import Cookie from "js-cookie"
