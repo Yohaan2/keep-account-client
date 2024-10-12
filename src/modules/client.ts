@@ -1,12 +1,18 @@
 import { AddDebt, CreateClient } from "@/types/client"
 import axiosInstance from "@/utils/http"
+import Cookies from "js-cookie"
 
 export const createClient = async (data: CreateClient) => {
   return await axiosInstance.post("/client/create", data)
 }
 
 export const getClients = async () => {
-  return await axiosInstance.get("/client/get-clients")
+  const token = Cookies.get('access_token')
+  return await axiosInstance.get("/client/get-clients", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
 }
 
 export const getDebtsById = async (id:string) => {

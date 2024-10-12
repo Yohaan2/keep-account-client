@@ -22,6 +22,8 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: login,
     onSuccess: (data) => {
+      localStorage.setItem('access_token', data.data.access_token)
+      localStorage.setItem('refresh_token', data.data.refresh_token)
       Cookie.set('access_token', data.data.access_token, {
         expires: 1000 * 60 * 60 * 24 * 2,
         path: '/',
@@ -41,11 +43,7 @@ export const useLogin = () => {
 
 export const useLogout = () => {
   const router = useRouter()
-  return useMutation({
-    mutationFn: logout,
-    onSuccess: () => {
-      router.push("/login")
-      console.log("logout")
-    }
-  })
+  Cookie.remove('access_token')
+  Cookie.remove('refresh_token')
+  router.push("/login")
 }

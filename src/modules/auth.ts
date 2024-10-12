@@ -1,6 +1,7 @@
 import { UserLogin, UserRegister } from "@/types/auth";
 import axios from "@/utils/http";
 
+
 export const register = async (data: UserRegister) => {
   return await axios.post("/auth/register", data);
 }
