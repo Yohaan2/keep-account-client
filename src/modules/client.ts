@@ -3,7 +3,12 @@ import axiosInstance from "@/utils/http"
 import Cookies from "js-cookie"
 
 export const createClient = async (data: CreateClient) => {
-  return await axiosInstance.post("/client/create", data)
+  const token = Cookies.get('access_token')
+  return await axiosInstance.post("/client/create", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
 }
 
 export const getClients = async () => {
