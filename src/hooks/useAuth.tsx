@@ -42,8 +42,12 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
-  const router = useRouter()
-  Cookie.remove('access_token')
-  Cookie.remove('refresh_token')
-  router.push("/login")
+  const router = useRouter();
+  return {
+    logout: () => {
+      Cookie.remove('access_token')
+      Cookie.remove('refresh_token')
+      router.push("/login")
+    }
+  }
 }

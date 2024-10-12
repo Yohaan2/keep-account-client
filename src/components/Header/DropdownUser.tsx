@@ -8,9 +8,10 @@ import { useGetUser } from "@/hooks/useUser";
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { data: user } = useGetUser()
+  const { logout } = useLogout()
 
   const handleLogout = () => {
-    useLogout()
+    logout()
   }
 
   return (
