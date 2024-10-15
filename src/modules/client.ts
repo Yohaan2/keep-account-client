@@ -60,9 +60,11 @@ export const reduceAccount = async (data : {id: string, amount: number}) => {
 
 export const resetAccount = async (id: string) => {
   const token = Cookies.get('access_token')
-  return axiosInstance.put(`/client/reset-account/${id}`, {
+  console.log(id)
+  console.log(token)
+  return await axiosInstance.put(`/client/reset-account/${id}`, undefined, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`
     }
   })
 }

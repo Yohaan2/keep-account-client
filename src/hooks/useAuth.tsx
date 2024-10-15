@@ -22,18 +22,14 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      localStorage.setItem('access_token', data.data.access_token)
-      localStorage.setItem('refresh_token', data.data.refresh_token)
       Cookie.set('access_token', data.data.access_token, {
-        expires: 1000 * 60 * 60 * 24 * 2,
+        expires: 3,
         path: '/',
-        sameSite: 'none',
         secure: true
       })
       Cookie.set('refresh_token', data.data.refresh_token, {
-        expires: 1000 * 60 * 60 * 24 * 10,
+        expires: 10,
         path: '/',
-        sameSite: 'none',
         secure: true
       })
       router.push("/panel")

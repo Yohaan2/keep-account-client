@@ -27,7 +27,7 @@ const RegisterAccount = () => {
   const { mutate: addDebt, isSuccess, isPending } = useAddDebt()
   const { mutate: deleteClient } = useDeleteClient()
   const { mutate: reduceAccount, isSuccess: isReduceSuccess, isPending: isReducePending } = useReduceAccount()
-  const { mutate: resetAccount } = useResetAccount()
+  const { mutate: resetAccount, isSuccess: isSuccessReset, isPending: isPendingReset } = useResetAccount()
 
   useEffect(() => {
     if(isSuccess) {
@@ -48,7 +48,21 @@ const RegisterAccount = () => {
       }, 3000)
     }
 
-  }, [isSuccess, isReduceSuccess])
+    if(isSuccessReset) {
+      setShowNotification(true)
+      setAlertMessage("Cuenta reseteada")
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+      setTimeout(() => {
+        setShowNotification(false)
+      }, 3000)
+    }
+
+  }, [isSuccess, isReduceSuccess, isSuccessReset])
   
 
   const schemaAccount = yup
@@ -188,6 +202,7 @@ const RegisterAccount = () => {
             <button
               className="text-center font-medium text-blue-700 py-2 px-4 transition-all duration-300 hover:bg-blue-700 hover:text-white hover:rounded-lg"
               onClick={() => resetAccount(id as string)}
+              disabled={isPendingReset}
             >Resetear cuenta</button>
           </div>
         </div>
